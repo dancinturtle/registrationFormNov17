@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Basic Validation Example</title>
+  </head>
+  <body>
+    <h1>Registration Form</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          {{message}}<br>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form action='/process' method='POST'>
+      Email:<input type="text" name="email">
+      <br>
+      First Name:<input type="text" name="fname">
+      <br>
+      Last Name:<input type="text" name="lname">
+      <br>
+      Password:<input type="text" name="pword">
+      <br>
+      Confirm Password:<input type="text" name="confirm">
+      <br>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+  </html>
