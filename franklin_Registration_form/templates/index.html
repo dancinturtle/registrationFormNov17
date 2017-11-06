@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+    <title>Register A New User</title>
+</head>
+
+<body>
+    <h1>Create A New User</h1>
+    <h3>All fields are required.</h3>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action='/new' method='post'>
+        First Name: <input type='text' name='first_name' placeholder='first name'>
+        Last Name: <input type='text' name='last_name' placeholder='last name'>
+        Email: <input type='text' name='email' placeholder='email'>
+        Password: <input type='password' name='password' placeholder='password'>
+        Confirm Password: <input type='password' name='confirmpass' placeholder='confirm password'>
+        <!-- DOB: can go here -->
+        <input type='submit' name='submit' value='Register'>
+    </form>
+</body>
+</html>
+        
