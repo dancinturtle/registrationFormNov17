@@ -1,60 +1,76 @@
-from flask import Flask, render_template, redirect, session, flash, request
+from flask import Flask, render_template, request, redirect, session, flash
 import re
-
 app = Flask(__name__)
-app.secret_key = "thatsthescrect"
+app.secret_key="codingDojo"
 
-EMAIL_REGEX = re.compile(r'[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-PASSWORD_NUM_REGEX = re.compile(r'[0-9]?')
-PASSWORD_UPPERALPHA_REGEX = re.compile(r'[A-Z]?')
-NAME_REGEX = re.compile(r'\D+')
-
-
-
+NAME = re.compile(r'^[a-zA-z]+$')
+EMAIL = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
+PASSWORD = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$')
 
 @app.route('/')
 def index():
-    session['first_name'] = ""
-    session['last_name'] = ""
-    session['email'] = ""
+    return render_template('/index.html')
 
-    return render_template('index.html')
 
-@app.route('/process', methods=['POST'])
-def method_name():
-    session['first_name']       = request.form['first_name']
-    session['last_name']        = request.form['last_name']
-    session['email']            = request.form['email']
-    process_error = False
-    if(len(request.form['first_name']) < 1):
-        flash("Fist Name cannot be left blank!!!!", "error") 
-        process_error = True   
-    elif not NAME_REGEX.match(request.form['first_name']) or not NAME_REGEX.match(request.form['last_name']):
-        flash("Fist & Last Name cannot have numbers!!!!", "error")
-        process_error = True
-    elif(len(request.form['last_name']) < 1):
-        flash("Last Name cannot be left blank!!!!", "error")
-        process_error = True
-    elif(len(request.form['email']) < 1):
-        flash("Email cannot be left blank!!!!", "error")
-        process_error = True
-    elif(len(request.form['password']) < 1):
-        flash("Password cannot be left blank!!!!", "error")
-    elif(len(request.form['password']) < 8):
-        flash("Password must be aleast 8 characters!!!!", "error")
-        process_error = True
-    elif not EMAIL_REGEX.match(request.form['email']):
-        flash("Not a valid email address. It should be of the format joe@email.com", "error")
-        process_error = True
-    elif (request.form['password'] != request.form['confirm_password']):
-        flash("Confirm password doesn't match Password ", "error")
-        process_error = True
+@app.route('/submit', methods=['POST'])
+def show_info():
+    #check if all entries are good based on verification requirements above in re.compile
+    status = formIsValid(request.form)
+    print status
+    # show if submits is accepted or needs to be resubmited. Show error through flash
+    if (status['isValid']):
+        print "success"
+        return redirect('/success')
+    
     else:
-        flash("Thanks for submitting your information.", "success")  
-        session['first_name'] = ""
-        session['last_name'] = ""
-        session['email'] = ""  
+        print "error"
+        for error in status['errors']:
+            flash(error)
+        return redirect('/')
 
-    return render_template('index.html')
+@app.route('/success')
+def success():
+    return "Success"
+    #check each form field is valid entry values
+def formIsValid(client):
+    errors=[]
+    isValid=True
+    if len(client['firstName'])<1:
+        errors.append("Enter your first name")
+        isValid = False
+
+    if len(client['lastName'])<1:
+        errors.append("Enter your last name")
+        isValid = False
+
+    if len(client['email'])<1:
+        errors.append("Enter an email")
+        isValid = False
+
+    if len(client['pw'])<1:
+        errors.append("Enter a password")
+        isValid = False
+
+    if len(client['confirm_pw'])<1:
+        errors.append("Confirm your password")
+        isValid = False
+
+    if not re.match(NAME, client['firstName']) and not re.match(NAME, client['lastName']):
+        errors.append("Names can only include letters")
+        isValid=False
+
+    if not re.match(EMAIL, client['email']):
+        errors.append("You did not enter a valid Email address")
+        isValid = False
+
+    if client['pw'] != client['confirm_pw']:
+        errors.append("Your passwords do not match")
+        isValid = False
+
+    if not re.match(PASSWORD, client['pw']):
+        errors.append("Passwords must include one uppercase letter and one number")
+        isValid = False
+
+    return {"isValid":isValid, "errors":errors}
 
 app.run(debug=True)
