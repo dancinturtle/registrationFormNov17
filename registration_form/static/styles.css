@@ -1,0 +1,23 @@
+*{
+margin: 0px;
+padding: 0px;
+}
+body{
+width: 970px;
+margin: 20px;
+}
+form{
+text-align: center;
+padding-top: 20px;
+}
+ul{
+list-style-type: none;
+}
+h1{
+margin-bottom: 15px; 
+}
+.message ul{
+list-style-type: none;
+text-align: center;
+margin: 10px;
+}
