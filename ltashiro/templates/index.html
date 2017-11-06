@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration Form</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %} <!--Basic form validation- helps us declare a var in our template that we can use within a specific scope.-->
+        {% if messages %}<!--check if there are any msgs that came back from get_flashed_messages function.-->
+            {% for message in messages %} <!--Loop through all messages.-->
+                <p>{{message}}</p> <!--print the msg one by one each in p tag-->
+            {% endfor %} <!--end for-->
+        {% endif %}<!--end if conditional-->
+    {% endwith %}<!--end with -->
+    <form action="/registration" method="POST"> <!--Post because we are sending sensitive info.  All our code will be contained in /registration.-->
+        Email: <input type="text" name="email"><!--name is needed so server can id the info-->
+        <br>
+        First Name: <input type="text" name="first_name">
+        <br>
+        Last Name: <input type="text" name="last_name">
+        <br>
+        Password: <input type="password" name="pw"><!--tex entered will be disguised as circles.-->
+        <br>
+        Confirm Password: <input type="password" name="confpw">
+        <br>
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
