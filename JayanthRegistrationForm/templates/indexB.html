@@ -1,0 +1,32 @@
+<html>
+     <head>
+          <link rel="stylesheet" type="text" href="{{ url_for ('static', filename='style.css') }}">
+          <title> Registration Form </title>
+     </head>
+     <body>
+          <h2> Your Info</h2>
+            <div id="flashes">
+               <p>{%with messages = get_flashed_messages()%}
+                    {%if messages%}
+                    <ul>
+                         {%for message in messages%}
+                              <li>{{message}}</li>
+                         {%endfor%}
+                    </ul>
+                    {%endif%}
+               {%endwith%}</p>
+            </div>
+            <div class= 'wrapper'>
+                <div class="regForm">
+                    <form action ='/submit' method='POST'>
+                            <p>First Name:<input class="textfield" type="text" name ="firstName"></p>
+                            <p>Last Name:<input class="textfield" type="text" name ="lastName"></p>
+                            <p>Email:<input class="textfield" type="text" name ="email"></p>
+                            <p>Password:<input class="textfield" type="password" name ="pw"></p>
+                            <p>Confirm Password:<input class="textfield" type="password" name ="confirm_pw"></p>
+                            <input class="button" type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>  
+     </body>
+</html>
