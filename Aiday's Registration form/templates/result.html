@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Results of survey</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+    	<form action='/clear' method='POST'>
+        <h1>Welcome, <br> {{session['firstName']}} {{session['lastName']}}</h1>
+        <button>Go back</button>
+    </form>
+</div>
+</body>
+</html>
