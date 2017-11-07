@@ -1,0 +1,12 @@
+*{
+	font-family: sans-serif;
+}
+form, h3{
+	margin-left: 20px;
+}
+label{
+	width: 150px;
+	margin-right: 10px;
+	margin-left: 20px;
+	display:inline-block;
+}
