@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+        <meta charset="UTF-8">
+        <title>Registration Form</title>
+    </head>
+        <body>
+            <form action="/process" method="post">
+               <h1>Registration Form</h1>
+                <ul>
+                    <li><label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name"></li>
+
+                    <li><label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name"></li>
+
+                    <li><label for="email">Email:</label>
+                    <input type="text" id="email" name="email"></li>
+
+                    <li><label for="password">Password:</label>
+                    <input type="password" id="password" name="password"></li>
+
+                    <li><label for="confirm_password">Confirm Password:</label>
+                    <input type="password" id="confirm_password" name="confirm_password"></li>
+
+                    <li><input type="submit" value="Submit"></li>
+                </ul>
+            </form>
+            <div class="message">
+                <ul>
+                    <li>
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </li>
+                <!--    <li>
+                        {% with messages = get_flashed_messages(category_filter =['last_name']) %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </li>
+                    <li>
+                        {% with messages = get_flashed_messages(category_filter =['numbers']) %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </li>
+                    <li>
+                        {% with messages = get_flashed_messages(category_filter =['email']) %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </li>
+                    <li>
+                        {% with messages = get_flashed_messages(category_filter =['password_length']) %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </li>
+                    <li>
+                        {% with messages = get_flashed_messages(category_filter =['match_password']) %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </li> -->
+                </ul>
+            </div>
+        </body>
+</html>
