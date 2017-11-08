@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='index.css')}}">
+    <title>Registration</title>
+</head>
+<body>
+    <div class='box'>
+        <div class='smallBox'>
+            <div class="leftside">
+                <h4>first_name:</h4>
+                <h4>last_name:</h4>
+                <h4>email:</h4>
+                <h4>password:</h4>
+                <h4>confirm_password:</h4>
+                <h4>Date of Birth:</h4>
+                <br>
+            </div>
+            <div class="rightside">
+                <form action='/index' method='post'>
+                    <input type='text' first_name ='first_name' name='first_name'>
+                    <br>
+                    <input type='text' last_name ='last_name' name='last_name'>
+                    <br>
+                    <input type='text' email='email' name='email'>
+                    <br>
+                    <input type='password'  name='password'>
+                    <br>
+                    <input type='password'  name='confirm_password'>
+                    <br>
+                    <input type='date'  date='date' name='date'>
+                    <br>
+                    <input class="submit" type='submit' value='Submit'>
+                </form>
+                <div class=red>
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                            <p>{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,82 @@
+h4{
+    display: block;
+    margin: 22px 22px 22px 0px;
+}
+h2{
+    display: block;
+    margin: 0px;
+    font-size: 18px;
+}
+h3{
+    text-decoration: underline;
+    margin-left: 45px;
+}
+select{
+    display: block;
+    margin: 2px 0px 23px 0px;
+}
+input{
+    display: block;
+}
+form{
+    height: 93px;
+}
+.box{
+    border: 3px solid blue;
+    height: 400px;
+    width: 490px;
+    margin: 55px;
+    padding: 20px;
+}
+.smallBox{
+    height: 150px;
+}
+.leftside{
+    width: 200px;
+    margin: 0px;
+    height: 150px;
+}
+.rightside{
+    vertical-align: top;
+    position: relative;
+    bottom: 150px;
+    left: 165px;
+    width: 150px;
+    height: 149px;
+    box-sizing: border-box;
+}
+
+#state{
+    width: 130px;
+}
+
+#language{
+    width: 130px;
+}
+
+
+#submittedInfo{
+    margin: 5px;
+}
+
+button{
+    position: relative;
+    left: 400px;
+    top: 65px;
+}
+
+.submit{
+    position: relative;
+    /* left: 429px; */
+    top: 15px;
+}
+
+p{
+display: inline-block;
+font-size: medium;
+}
+
+.red{
+    margin-top: 323px;
+    
+}
