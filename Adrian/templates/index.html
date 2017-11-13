@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Page</title>
+</head>
+<body>
+	  {% with messages = get_flashed_messages(category_filter=["wrong"]) %}
+    {% if messages %}
+      {% for message in messages %}
+        <ul>
+        	<li>{{message}}</li>
+        </ul>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+<form action='/create' method='POST'>
+	Email: <input type="text" name="email">
+	First Name: <input type="text" name="first_name">
+	Last Name: <input type="text" name="last_name">
+	Password: <input type="password" name="password">
+	Confirm Password: <input type="password" name="confirm_password">
+	<input type="submit" value='Create User'>
+</form>
+  {% with right = get_flashed_messages(category_filter=["right"]) %}
+    {% if right %}
+    {% for x in right %}
+        <ul>
+        <li>{{right}}</li>
+        <ul>
+     {% endfor %}
+    {% endif %}
+  {% endwith %}            
+</body>
+</html>
