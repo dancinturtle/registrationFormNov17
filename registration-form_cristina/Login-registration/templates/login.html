@@ -1,0 +1,66 @@
+<html>
+    <head>
+      <title>Registration</title>
+      <style>
+          p{
+              color: #CC71CC
+          }
+      </style>
+    </head>
+    <body>
+        <h1>Registration Now</h1>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+      <form action='/process' method='POST'>
+        First Name:<input type="text" name="first_name">
+        <p></p>
+        Last Name:<input type="text" name="last_name">
+        <p></p>
+        Email:<input type="text" name="email">
+        <p></p>
+        Password:<input type="password" name="password">
+        <p></p>
+        Confirm Password:<input type="password" name="confirmation_password">
+        <p></p>
+        <input type="submit" value="Submit">
+      </form>
+    </body>
+    </html>
+    
+
+
+
+
+
+<!-- <html>
+    <head>
+      <title>Validation</title>
+    </head>
+    <body>
+      <h1>Enter a Valid Email!</h1>
+      {% for x in all_emails: %}
+      <p>Email: {{ x['email_address'] }}</p>
+      <p>Created time:{{ x['created_at'] }} </p>
+      {% endfor %}
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p>{{message}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <form action='/process' method='POST'>
+        email:<input type="text" name="email">
+        <input type="submit" value="Submit">
+      </form>
+    </body>
+    </html>
+     -->
